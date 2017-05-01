@@ -31,11 +31,14 @@ class ViewController: UIViewController {
                      "queen",
                      "king",
                      "ace"]
+    
     var rightScore = 0
     var leftScore = 0
     var cardFlip = AVAudioPlayer()
     var aboutButton: UIButton!
     var aboutButtonSize: CGSize!
+  //  var resetButton: UIButton!
+  //  var resetButtonSize: CGSize!
 
 
     override func viewDidLoad() {
@@ -43,6 +46,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         configureAboutButton()
+       // configureResetButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,13 +87,45 @@ class ViewController: UIViewController {
         
         view.addSubview(aboutButton)
     }
+    /*
     
+    func configureResetButton() {
+        let resetButtonText = "Reset"
+        let resetButtonFont = UIFont.systemFont(ofSize: 15)
+        let fontAttributes = [NSFontAttributeName: resetButtonFont]
+        resetButtonSize = resetButtonText.size(attributes: fontAttributes)
+        
+        resetButtonSize.height += 16
+        resetButtonSize.width = resetButtonSize.width + 16
+        
+        resetButton = UIButton(frame: CGRect(x: 138, y: (view.frame.height-5) - resetButtonSize.height, width: resetButtonSize.width, height: resetButtonSize.height))
+        
+        resetButton.setTitle(resetButtonText, for: .normal)
+        resetButton.setTitleColor(UIColor.white, for: .normal)
+        resetButton.titleLabel?.font = resetButtonFont
+        aboutButton.addTarget(self, action: #selector(loadView), for: .touchUpInside)
+        
+        view.addSubview(resetButton)
+        
+        
+    }
+    */
     // MARK: - Segue
     
     func segueToAboutVC(sender: UIButton) {
         performSegue(withIdentifier: "ToAboutVC", sender: sender)
     }
     
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
+      self.leftScore = 0
+        self.rightScore = 0
+        self.leftScoreLabel.text = "\(self.leftScore)"
+        self.rightScoreLabel.text = "\(self.rightScore)"
+        self.leftImageView.image = UIImage(named: "back")
+        self.rightImageView.image = UIImage(named: "back")
+        //loadView()
+    }
+ 
     
     @IBAction func dealTapped(_ sender: UIButton) {
         
